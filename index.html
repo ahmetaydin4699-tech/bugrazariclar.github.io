@@ -1,81 +1,78 @@
-/* Sayfanın genel arka planı */
-body {
-    background: linear-gradient(135deg, #74ebd5 0%, #9face6 100%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arkadaşımın Sayfası</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #74ebd5 0%, #9face6 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: sans-serif;
+        }
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            text-align: center;
+            width: 350px;
+        }
+        .photo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .img-side {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #fff;
+            opacity: 0.9;
+        }
+        .img-main {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #fff;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        h1 { color: #333; margin: 10px 0; font-size: 24px; }
+        p { color: #666; font-size: 14px; }
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 25px;
+            background: #6c63ff;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
 
-/* Kartın genişliğini biraz artırdık ki 3 foto sığsın */
-.card {
-    background: white;
-    padding: 30px;
-    border-radius: 20px;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-    text-align: center;
-    width: 350px; 
-    transition: transform 0.3s;
-}
+    <div class="card">
+        <div class="photo-container">
+            <img src="arkadasimin-fotosu2.jpg" class="img-side">
+            <img src="arkadasimin-fotosu.jpg" class="img-main">
+            <img src="arkadasimin-fotosu3.jpg" class="img-side">
+        </div>
+        
+        <h1>Arkadaşının İsmi</h1>
+        <p>Senin için harika bir sayfa hazırladım! ✨</p>
+        
+        <a href="https://instagram.com" target="_blank" class="btn">Instagram'ı Aç</a>
+    </div>
 
-.card:hover {
-    transform: translateY(-10px);
-}
-
-/* Fotoğrafları yan yana dizen kapsayıcı */
-.photo-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 20px;
-}
-
-/* Genel fotoğraf ayarları (Tek bir yerde topladık) */
-.profile-img {
-    border-radius: 50%;
-    border: 3px solid #fff;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    object-fit: cover;
-    transition: 0.3s;
-}
-
-/* Ortadaki ana fotoğraf boyutu */
-.main {
-    width: 110px;
-    height: 110px;
-    z-index: 2;
-}
-
-/* Yanlardaki küçük fotoğraflar */
-.side {
-    width: 70px;
-    height: 70px;
-    opacity: 0.8;
-}
-
-.profile-img:hover {
-    transform: scale(1.1);
-    opacity: 1;
-}
-
-h1 { color: #333; margin: 15px 0 5px; font-size: 22px; }
-p { color: #777; font-size: 14px; line-height: 1.5; }
-
-.btn {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 10px 25px;
-    background: #6c63ff;
-    color: white;
-    text-decoration: none;
-    border-radius: 25px;
-    font-weight: bold;
-    transition: 0.3s;
-}
-
-.btn:hover {
-    background: #e1306c; /* Instagram rengine yakın bir renk */
-}
+</body>
+</html>

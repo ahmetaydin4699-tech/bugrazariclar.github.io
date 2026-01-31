@@ -2,34 +2,39 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Arkadaşımın Sayfası</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Tüm tasarım kodlarını buraya topladım ki kafa karışmasın */
+        body { background: #f0f2f5; font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .card { background: white; padding: 20px; border-radius: 15px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        
+        /* Fotoğrafların yan yana dizilimi */
+        .gallery { display: flex; gap: 10px; justify-content: center; align-items: center; margin-bottom: 15px; }
+        
+        .gallery img { 
+            width: 80px; height: 80px; 
+            border-radius: 50%; border: 3px solid #007bff; 
+            object-fit: cover; 
+        }
+        
+        /* Ortadaki fotoğrafı biraz daha büyük yapalım */
+        .gallery .main-img { width: 110px; height: 110px; }
+        
+        .btn { display: inline-block; padding: 10px 20px; background: #007bff; color: white; text-decoration: none; border-radius: 5px; margin-top: 10px; }
+    </style>
 </head>
 <body>
 
     <div class="card">
-    <div class="photo-container">
-        <img src="arkadasimin-fotosu2.jpg" alt="Foto 2" class="profile-img side">
-        <img src="arkadasimin-fotosu.jpg" alt="Ana Foto" class="profile-img main">
-        <img src="arkadasimin-fotosu3.jpg" alt="Foto 3" class="profile-img side">
-    </div>
-    
-    <h1>Arkadaşının Adı</h1>
-    <p>Senin için hazırladığım özel web sitesine hoş geldin! 🚀</p>
-    
-    <div class="links">
-        <a href="#" class="btn">Instagram'da Gör</a>
-    </div>
-</div>
-        <img src="arkadasimin-fotosu.jpg" alt="Profil Fotoğrafı" class="profile-img">
-        
-        <h1>Buğra Zarıçlar</h1>
-        <p>Senin için hazırladığım özel web sitesine hoş geldin! 🚀</p>
-        
-        <div class="links">
-           <a href="https://instagram.com/bugra_zariclar" class="btn">Instagram'da Gör</a>
+        <div class="gallery">
+            <img src="arkadasimin-fotosu2.jpg" alt="Foto 1">
+            <img src="arkadasimin-fotosu.jpg" alt="Ana Foto" class="main-img">
+            <img src="arkadasimin-fotosu3.jpg" alt="Foto 3">
         </div>
+        
+        <h1>Arkadaşının Adı</h1>
+        <p>İyi ki varsın!</p>
+        <a href="#" class="btn">Instagram</a>
     </div>
 
 </body>

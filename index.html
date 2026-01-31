@@ -4,104 +4,115 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Doğum Günü Kutlaması</title>
-    <link rel="stylesheet" href="style.css">
     <style>
-        /* Ana ekranı ikiye bölüyoruz */
         body {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
             background: linear-gradient(135deg, #74ebd5 0%, #9face6 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
             min-height: 100vh;
             margin: 0;
-            font-family: 'Segoe UI', sans-serif;
-            overflow-x: hidden;
-        }
-
-        /* Sağ taraftaki Not Panosu */
-        .guestbook {
-            width: 300px;
-            background: rgba(255, 255, 255, 0.9);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            gap: 40px;
+            flex-wrap: wrap;
             padding: 20px;
+        }
+
+        /* Profil Kartı */
+        .card {
+            background: white;
+            padding: 30px;
             border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            max-height: 80vh;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            text-align: center;
+            width: 350px;
+            transition: transform 0.3s;
+        }
+
+        .photo-container {
             display: flex;
-            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
         }
 
-        .notes-list {
-            flex-grow: 1;
-            overflow-y: auto;
-            margin-bottom: 15px;
-            text-align: left;
-            padding: 5px;
-        }
+        .img-side { width: 70px; height: 70px; border-radius: 50%; object-fit: cover; border: 3px solid #fff; opacity: 0.8; }
+        .img-main { width: 110px; height: 110px; border-radius: 50%; object-fit: cover; border: 4px solid #fff; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
 
-        .note-item {
-            background: #fff9c4;
-            padding: 10px;
-            margin-bottom: 10px;
-            border-radius: 8px;
-            font-size: 13px;
-            border-left: 4px solid #fbc02d;
-            box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
-        }
+        /* Sayaç */
+        .countdown-container { display: flex; justify-content: center; gap: 10px; margin-top: 20px; }
+        .time-box { background: #6c63ff; color: white; padding: 10px; border-radius: 10px; min-width: 50px; }
+        .time-box span { display: block; font-size: 18px; font-weight: bold; }
+        .time-box label { font-size: 10px; }
 
-        .note-input {
-            width: 90%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            outline: none;
-        }
-
-        .add-note-btn {
-            background: #6c63ff;
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 25px;
+            background: #e1306c;
             color: white;
-            border: none;
-            padding: 8px;
-            margin-top: 5px;
-            border-radius: 10px;
-            cursor: pointer;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
         }
 
-        /* Mobilde alt alta gelmesi için */
-        @media (max-width: 800px) {
-            body { flex-direction: column; height: auto; padding: 20px; }
-            .guestbook { width: 90%; margin-top: 20px; }
+        /* Mesaj Panosu (Sağ Taraf) */
+        .guestbook {
+            width: 400px;
+            background: white;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            max-height: 80vh;
+            overflow-y: auto;
         }
+
+        h1 { color: #333; font-size: 22px; margin: 10px 0; }
+        h3 { color: #444; margin-bottom: 15px; border-bottom: 2px solid #eee; padding-bottom: 10px; }
     </style>
 </head>
 <body>
 
     <div class="card">
         <div class="photo-container">
-            <img src="arkadasimin-fotosu2.jpg" class="img-side">
-            <img src="arkadasimin-fotosu.jpg" class="img-main">
-            <img src="arkadasimin-fotosu3.jpg" class="img-side">
+            <img src="arkadasimin-fotosu2.jpg" class="img-side" alt="Yan 1">
+            <img src="arkadasimin-fotosu.jpg" class="img-main" alt="Ana Foto">
+            <img src="arkadasimin-fotosu3.jpg" class="img-side" alt="Yan 2">
         </div>
         <h1>Buğra Zarıçlar</h1>
+        <p>Büyük Güne Kalan Zaman ✨</p>
+        
         <div class="countdown-container" id="countdown">
             <div class="time-box"><span id="days">00</span><label>Gün</label></div>
             <div class="time-box"><span id="hours">00</span><label>Saat</label></div>
             <div class="time-box"><span id="minutes">00</span><label>Dak</label></div>
             <div class="time-box"><span id="seconds">00</span><label>Sn</label></div>
         </div>
-        <a href="https://www.instagram.com/bugra_zariclar" target="_blank" class="btn">Profiline Git</a>
+
+        <a href="https://www.instagram.com/bugra_zariclar" target="_blank" class="btn">Instagram'ı Gör</a>
     </div>
 
     <div class="guestbook">
-        <h3>Not Bırak ✍️</h3>
-        <div class="notes-list" id="notesList">
-            <div class="note-item">İlk mesaj benden: İyi ki doğdun! 🎂</div>
-        </div>
-        <input type="text" id="noteInput" class="note-input" placeholder="Bir şeyler yaz...">
-        <button class="add-note-btn" onclick="addNote()">Ekle</button>
+        <h3>Ziyaretçi Defteri ✍️</h3>
+        <div id="disqus_thread"></div>
+        <script>
+            var disqus_config = function () {
+                this.page.url = window.location.href;
+                this.page.identifier = "dogumgunu-ozel-sayfa";
+            };
+            (function() {
+                var d = document, s = d.createElement('script');
+                // DİKKAT: Alttaki satırı kendi shortname'inle değiştir!
+                s.src = 'https://bugrazariclarr.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+        <noscript>Lütfen yorumları görmek için JavaScript'i etkinleştirin.</noscript>
     </div>
 
     <script>
-        // Geri Sayım Kodu
         const countdownDate = new Date("Nov 20, 2026 00:00:00").getTime();
         setInterval(function() {
             const now = new Date().getTime();
@@ -111,20 +122,7 @@
             document.getElementById("minutes").innerHTML = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             document.getElementById("seconds").innerHTML = Math.floor((distance % (1000 * 60)) / 1000);
         }, 1000);
-
-        // Not Ekleme Fonksiyonu
-        function addNote() {
-            const input = document.getElementById("noteInput");
-            const list = document.getElementById("notesList");
-            if (input.value.trim() !== "") {
-                const newNote = document.createElement("div");
-                newNote.className = "note-item";
-                newNote.innerText = input.value;
-                list.appendChild(newNote);
-                input.value = "";
-                list.scrollTop = list.scrollHeight;
-            }
-        }
     </script>
+
 </body>
 </html>

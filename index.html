@@ -12,16 +12,16 @@
             align-items: center;
             min-height: 100vh;
             margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            gap: 30px;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            gap: 20px;
             flex-wrap: wrap;
             padding: 20px;
         }
 
-        /* Profil Kartı */
+        /* Sol Kart */
         .card {
             background: white;
-            padding: 30px;
+            padding: 25px;
             border-radius: 20px;
             box-shadow: 0 15px 35px rgba(0,0,0,0.2);
             text-align: center;
@@ -34,37 +34,34 @@
             justify-content: center;
             align-items: center;
             gap: 10px;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
-        .img-side { width: 65px; height: 65px; border-radius: 50%; object-fit: cover; border: 3px solid #fff; opacity: 0.8; }
-        .img-main { width: 110px; height: 110px; border-radius: 50%; object-fit: cover; border: 4px solid #fff; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        /* Fotoğrafların boyutlarını sabitledik */
+        .img-side { width: 65px; height: 65px; border-radius: 50%; object-fit: cover; border: 3px solid #fff; }
+        .img-main { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 4px solid #fff; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
 
         /* Geri Sayım */
-        .countdown-container { display: flex; justify-content: center; gap: 10px; margin-top: 15px; }
-        .time-box { background: #6c63ff; color: white; padding: 10px; border-radius: 10px; min-width: 55px; }
-        .time-box span { display: block; font-size: 20px; font-weight: bold; }
-        .time-box label { font-size: 10px; text-transform: uppercase; opacity: 0.8; }
+        .countdown-container { display: flex; justify-content: center; gap: 8px; margin-top: 15px; }
+        .time-box { background: #6c63ff; color: white; padding: 10px; border-radius: 10px; min-width: 50px; }
+        .time-box span { display: block; font-size: 18px; font-weight: bold; }
+        .time-box label { font-size: 10px; opacity: 0.9; }
 
-        /* Instagram Butonu */
         .btn {
             display: inline-block;
-            margin-top: 20px;
-            padding: 12px 25px;
+            margin-top: 15px;
+            padding: 10px 20px;
             background: #e1306c;
             color: white;
             text-decoration: none;
             border-radius: 25px;
             font-weight: bold;
-            transition: 0.3s;
         }
-        .btn:hover { transform: scale(1.05); background: #c13584; }
 
-        /* Sağ Taraf - Padlet Bölümü */
+        /* Sağ Taraf - Padlet */
         .padlet-area {
-            width: 500px;
-            max-width: 90vw;
-            height: 600px;
+            width: 450px;
+            height: 550px;
             background: white;
             border-radius: 20px;
             overflow: hidden;
@@ -72,9 +69,52 @@
             border: 5px solid white;
         }
 
-        h1 { color: #333; font-size: 24px; margin: 10px 0; }
-        p { color: #666; font-size: 14px; }
-
-        @media (max-width: 900px) {
+        @media (max-width: 850px) {
             body { flex-direction: column; }
-            .padlet-area { width: 100%; height: 500
+            .padlet-area { width: 100%; height: 450px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <div class="photo-container">
+            <img src="arkadasimin-fotosu2.jpg" class="img-side">
+            <img src="arkadasimin-fotosu.jpg" class="img-main">
+            <img src="arkadasimin-fotosu3.jpg" class="img-side">
+        </div>
+        
+        <h2 style="margin:0; color:#333;">Buğra Zarıçlar</h2>
+        <p style="font-size:14px; color:#666;">Doğum gününe kalan zaman ✨</p>
+        
+        <div class="countdown-container" id="countdown">
+            <div class="time-box"><span id="days">00</span><label>GÜN</label></div>
+            <div class="time-box"><span id="hours">00</span><label>SAAT</label></div>
+            <div class="time-box"><span id="minutes">00</span><label>DAK</label></div>
+            <div class="time-box"><span id="seconds">00</span><label>SN</label></div>
+        </div>
+
+        <a href="https://www.instagram.com/bugra_zariclar" target="_blank" class="btn">Instagram</a>
+    </div>
+
+    <div class="padlet-area">
+        <iframe src="https://padlet.com/embed/6l5hdjzd2eaq8q1l" 
+                frameborder="0" 
+                allow="camera;microphone;geolocation;display-capture;clipboard-write" 
+                style="width:100%; height:100%; display:block;"></iframe>
+    </div>
+
+    <script>
+        const countdownDate = new Date("Nov 20, 2026 00:00:00").getTime();
+        setInterval(function() {
+            const now = new Date().getTime();
+            const distance = countdownDate - now;
+            document.getElementById("days").innerHTML = Math.floor(distance / (1000 * 60 * 60 * 24));
+            document.getElementById("hours").innerHTML = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            document.getElementById("minutes").innerHTML = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            document.getElementById("seconds").innerHTML = Math.floor((distance % (1000 * 60)) / 1000);
+        }, 1000);
+    </script>
+
+</body>
+</html>

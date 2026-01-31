@@ -6,7 +6,6 @@
     <title>Doğum Günü Geri Sayımı</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        /* Geri sayım kutularının tasarımı */
         .countdown-container {
             display: flex;
             justify-content: center;
@@ -18,21 +17,22 @@
             color: white;
             padding: 10px;
             border-radius: 10px;
-            min-width: 50px;
+            min-width: 60px;
         }
         .time-box span {
             display: block;
-            font-size: 20px;
+            font-size: 22px;
             font-weight: bold;
         }
         .time-box label {
-            font-size: 10px;
+            font-size: 11px;
             text-transform: uppercase;
         }
         #message {
             font-weight: bold;
             color: #e1306c;
             margin-top: 15px;
+            font-size: 20px;
             display: none;
         }
     </style>
@@ -41,13 +41,13 @@
 
     <div class="card">
         <div class="photo-container">
-            <img src="arkadasimin-fotosu2.jpg" class="img-side">
-            <img src="arkadasimin-fotosu.jpg" class="img-main">
-            <img src="arkadasimin-fotosu3.jpg" class="img-side">
+            <img src="arkadasimin-fotosu2.jpg" class="img-side" alt="Foto 1">
+            <img src="arkadasimin-fotosu.jpg" class="img-main" alt="Ana Foto">
+            <img src="arkadasimin-fotosu3.jpg" class="img-side" alt="Foto 2">
         </div>
         
         <h1>Buğra Zarıçlar</h1>
-        <p>Büyük güne kalan zaman: ✨</p>
+        <p>Doğum gününe kalan süre: ✨</p>
 
         <div class="countdown-container" id="countdown">
             <div class="time-box"><span id="days">00</span><label>Gün</label></div>
@@ -62,8 +62,8 @@
     </div>
 
     <script>
-        // DOĞUM GÜNÜ TARİHİNİ BURADAN AYARLA
-        const countdownDate = new Date("Feb 15, 2026 00:00:00").getTime();
+        // Hedef Tarih: 20 Kasım 2026
+        const countdownDate = new Date("Nov 20, 2026 00:00:00").getTime();
 
         const x = setInterval(function() {
             const now = new Date().getTime();
@@ -79,6 +79,7 @@
             document.getElementById("minutes").innerHTML = minutes;
             document.getElementById("seconds").innerHTML = seconds;
 
+            // Tarih geçtiğinde mesajı göster
             if (distance < 0) {
                 clearInterval(x);
                 document.getElementById("countdown").style.display = "none";

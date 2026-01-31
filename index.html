@@ -2,39 +2,85 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Arkadaşımın Sayfası</title>
     <style>
-        /* Tüm tasarım kodlarını buraya topladım ki kafa karışmasın */
-        body { background: #f0f2f5; font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-        .card { background: white; padding: 20px; border-radius: 15px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-        
-        /* Fotoğrafların yan yana dizilimi */
-        .gallery { display: flex; gap: 10px; justify-content: center; align-items: center; margin-bottom: 15px; }
-        
-        .gallery img { 
-            width: 80px; height: 80px; 
-            border-radius: 50%; border: 3px solid #007bff; 
-            object-fit: cover; 
+        /* Arka plan ve genel düzen */
+        body {
+            background: linear-gradient(135deg, #74ebd5 0%, #9face6 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
         }
-        
-        /* Ortadaki fotoğrafı biraz daha büyük yapalım */
-        .gallery .main-img { width: 110px; height: 110px; }
-        
-        .btn { display: inline-block; padding: 10px 20px; background: #007bff; color: white; text-decoration: none; border-radius: 5px; margin-top: 10px; }
+
+        /* Beyaz Kart tasarımı */
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            text-align: center;
+            max-width: 400px;
+        }
+
+        /* Üçlü fotoğraf dizilimi */
+        .photo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .profile-img {
+            border-radius: 50%;
+            border: 3px solid #fff;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            object-fit: cover;
+            transition: 0.3s;
+        }
+
+        /* Yanlardaki küçük fotolar */
+        .side { width: 70px; height: 70px; opacity: 0.8; }
+        /* Ortadaki ana foto */
+        .main { width: 110px; height: 110px; z-index: 2; }
+
+        .profile-img:hover { transform: scale(1.1); opacity: 1; }
+
+        h1 { color: #333; margin: 10px 0; font-size: 24px; }
+        p { color: #666; font-size: 14px; margin-bottom: 20px; }
+
+        /* Instagram Butonu */
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background: #6c63ff;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn:hover { background: #e1306c; transform: translateY(-3px); }
     </style>
 </head>
 <body>
 
     <div class="card">
-        <div class="gallery">
-            <img src="arkadasimin-fotosu2.jpg" alt="Foto 1">
-            <img src="arkadasimin-fotosu.jpg" alt="Ana Foto" class="main-img">
-            <img src="arkadasimin-fotosu3.jpg" alt="Foto 3">
+        <div class="photo-container">
+            <img src="arkadasimin-fotosu2.jpg" alt="Foto 1" class="profile-img side">
+            <img src="arkadasimin-fotosu.jpg" alt="Ana Foto" class="profile-img main">
+            <img src="arkadasimin-fotosu3.jpg" alt="Foto 2" class="profile-img side">
         </div>
         
         <h1>Buğra Zarıçlar</h1>
-        <p>İyi ki varsın!</p>
-        <a href="#" class="btn">Instagram</a>
+        <p>Senin için hazırladığım özel web sitesine hoş geldin! ✨</p>
+        
+        <a href="https://www.instagram.com/bugra_zariclar" target="_blank" class="btn">DM'den yürü</a>
     </div>
 
 </body>

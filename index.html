@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Doğum Günü Kutlaması</title>
+    <title>Sürpriz Doğum Günü</title>
     <style>
         body {
             background: linear-gradient(135deg, #74ebd5 0%, #9face6 100%);
@@ -12,105 +12,62 @@
             align-items: center;
             min-height: 100vh;
             margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            gap: 40px;
+            font-family: 'Segoe UI', sans-serif;
+            gap: 30px;
             flex-wrap: wrap;
             padding: 20px;
         }
-
-        /* Profil Kartı */
         .card {
             background: white;
             padding: 30px;
             border-radius: 20px;
             box-shadow: 0 15px 35px rgba(0,0,0,0.2);
             text-align: center;
-            width: 350px;
-            transition: transform 0.3s;
+            width: 340px;
         }
-
-        .photo-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
-        .img-side { width: 70px; height: 70px; border-radius: 50%; object-fit: cover; border: 3px solid #fff; opacity: 0.8; }
-        .img-main { width: 110px; height: 110px; border-radius: 50%; object-fit: cover; border: 4px solid #fff; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
-
-        /* Sayaç */
-        .countdown-container { display: flex; justify-content: center; gap: 10px; margin-top: 20px; }
+        .photo-container { display: flex; justify-content: center; align-items: center; gap: 10px; margin-bottom: 20px; }
+        .img-side { width: 70px; height: 70px; border-radius: 50%; object-fit: cover; border: 3px solid #fff; }
+        .img-main { width: 110px; height: 110px; border-radius: 50%; object-fit: cover; border: 4px solid #fff; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        
+        /* Sayaç Kutuları */
+        .countdown-container { display: flex; justify-content: center; gap: 8px; margin-top: 15px; }
         .time-box { background: #6c63ff; color: white; padding: 10px; border-radius: 10px; min-width: 50px; }
         .time-box span { display: block; font-size: 18px; font-weight: bold; }
-        .time-box label { font-size: 10px; }
-
-        .btn {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 10px 25px;
-            background: #e1306c;
-            color: white;
-            text-decoration: none;
-            border-radius: 25px;
-            font-weight: bold;
-        }
-
-        /* Mesaj Panosu (Sağ Taraf) */
-        .guestbook {
+        
+        /* Sağ Taraf Form Alanı */
+        .form-area {
             width: 400px;
+            height: 500px;
             background: white;
-            padding: 25px;
             border-radius: 20px;
+            overflow: hidden;
             box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-            max-height: 80vh;
-            overflow-y: auto;
         }
-
-        h1 { color: #333; font-size: 22px; margin: 10px 0; }
-        h3 { color: #444; margin-bottom: 15px; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+        iframe { width: 100%; height: 100%; border: none; }
+        
+        .btn { display: inline-block; margin-top: 20px; padding: 10px 25px; background: #e1306c; color: white; text-decoration: none; border-radius: 25px; font-weight: bold; }
     </style>
 </head>
 <body>
 
     <div class="card">
         <div class="photo-container">
-            <img src="arkadasimin-fotosu2.jpg" class="img-side" alt="Yan 1">
-            <img src="arkadasimin-fotosu.jpg" class="img-main" alt="Ana Foto">
-            <img src="arkadasimin-fotosu3.jpg" class="img-side" alt="Yan 2">
+            <img src="arkadasimin-fotosu2.jpg" class="img-side">
+            <img src="arkadasimin-fotosu.jpg" class="img-main">
+            <img src="arkadasimin-fotosu3.jpg" class="img-side">
         </div>
         <h1>Buğra Zarıçlar</h1>
-        <p>Büyük Güne Kalan Zaman ✨</p>
-        
         <div class="countdown-container" id="countdown">
-            <div class="time-box"><span id="days">00</span><label>Gün</label></div>
-            <div class="time-box"><span id="hours">00</span><label>Saat</label></div>
-            <div class="time-box"><span id="minutes">00</span><label>Dak</label></div>
-            <div class="time-box"><span id="seconds">00</span><label>Sn</label></div>
+            <div class="time-box"><span id="days">00</span>Gün</div>
+            <div class="time-box"><span id="hours">00</span>Saat</div>
+            <div class="time-box"><span id="minutes">00</span>Dak</div>
+            <div class="time-box"><span id="seconds">00</span>Sn</div>
         </div>
-
-        <a href="https://www.instagram.com/bugra_zariclar" target="_blank" class="btn">Instagram'ı Gör</a>
+        <a href="https://www.instagram.com/bugra_zariclar" target="_blank" class="btn">Instagram</a>
     </div>
 
-    <div class="guestbook">
-        <h3>Ziyaretçi Defteri ✍️</h3>
-        <div id="disqus_thread"></div>
-        <script>
-            var disqus_config = function () {
-            this.page.url = window.location.href;
-            this.page.identifier = "dogumgunu-ozel-sayfa";
-            this.language = "tr"; // Yorum kutusunu Türkçe yapar
-        };
-            (function() {
-                var d = document, s = d.createElement('script');
-                // DİKKAT: Alttaki satırı kendi shortname'inle değiştir!
-                s.src = 'https://bugrazariclarr.disqus.com/embed.js';
-                s.setAttribute('data-timestamp', +new Date());
-                (d.head || d.body).appendChild(s);
-            })();
-        </script>
-        <noscript>Lütfen yorumları görmek için JavaScript'i etkinleştirin.</noscript>
+    <div class="form-area">
+        <iframe src="<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSc8pArGHJRNXivMs8t0yMK7Qtrz8kJ4pIiSJPdAIOfXr0htAA/viewform?embedded=true" width="640" height="510" frameborder="0" marginheight="0" marginwidth="0">Yükleniyor…</iframe>">Yükleniyor...</iframe>
     </div>
 
     <script>
@@ -124,6 +81,5 @@
             document.getElementById("seconds").innerHTML = Math.floor((distance % (1000 * 60)) / 1000);
         }, 1000);
     </script>
-
 </body>
 </html>

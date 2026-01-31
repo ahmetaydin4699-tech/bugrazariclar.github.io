@@ -3,23 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arkadaşımın Sayfası</title>
+    <title>Doğum Günü Geri Sayımı</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Geri sayım kutularının tasarımı */
+        .countdown-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .time-box {
+            background: #6c63ff;
+            color: white;
+            padding: 10px;
+            border-radius: 10px;
+            min-width: 50px;
+        }
+        .time-box span {
+            display: block;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .time-box label {
+            font-size: 10px;
+            text-transform: uppercase;
+        }
+        #message {
+            font-weight: bold;
+            color: #e1306c;
+            margin-top: 15px;
+            display: none;
+        }
+    </style>
 </head>
 <body>
 
     <div class="card">
         <div class="photo-container">
-            <img src="arkadasimin-fotosu2.jpg" class="img-side" alt="Foto 1">
-            <img src="arkadasimin-fotosu.jpg" class="img-main" alt="Ana Foto">
-            <img src="arkadasimin-fotosu3.jpg" class="img-side" alt="Foto 2">
+            <img src="arkadasimin-fotosu2.jpg" class="img-side">
+            <img src="arkadasimin-fotosu.jpg" class="img-main">
+            <img src="arkadasimin-fotosu3.jpg" class="img-side">
         </div>
         
         <h1>Buğra Zarıçlar</h1>
-        <p>instagram'dan yürümek için ✨</p>
+        <p>Büyük güne kalan zaman: ✨</p>
+
+        <div class="countdown-container" id="countdown">
+            <div class="time-box"><span id="days">00</span><label>Gün</label></div>
+            <div class="time-box"><span id="hours">00</span><label>Saat</label></div>
+            <div class="time-box"><span id="minutes">00</span><label>Dak</label></div>
+            <div class="time-box"><span id="seconds">00</span><label>Sn</label></div>
+        </div>
+
+        <div id="message">İYİ Kİ DOĞDUN! 🎉</div>
         
-        <a href="https://instagram.com/bugra_zariclar" target="_blank" class="btn">Instagram Profilim</a>
+        <a href="https://instagram.com" target="_blank" class="btn">Instagram'ı Aç</a>
     </div>
 
+    <script>
+        // DOĞUM GÜNÜ TARİHİNİ BURADAN AYARLA
+        const countdownDate = new Date("Feb 15, 2026 00:00:00").getTime();
+
+        const x = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = countdownDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerHTML = days;
+            document.getElementById("hours").innerHTML = hours;
+            document.getElementById("minutes").innerHTML = minutes;
+            document.getElementById("seconds").innerHTML = seconds;
+
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("countdown").style.display = "none";
+                document.getElementById("message").style.display = "block";
+            }
+        }, 1000);
+    </script>
 </body>
 </html>

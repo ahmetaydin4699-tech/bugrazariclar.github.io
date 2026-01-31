@@ -1,3 +1,4 @@
+/* Sayfanın genel arka planı ve hizalaması */
 body {
     background: linear-gradient(135deg, #74ebd5 0%, #9face6 100%);
     display: flex;
@@ -8,6 +9,7 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+/* Arkadaşının bilgilerinin duracağı beyaz kart */
 .card {
     background: white;
     padding: 30px;
@@ -15,20 +17,29 @@ body {
     box-shadow: 0 15px 35px rgba(0,0,0,0.2);
     text-align: center;
     width: 300px;
+    transition: transform 0.3s;
 }
 
+/* Mouse ile üzerine gelince kartın hafifçe büyümesi */
+.card:hover {
+    transform: translateY(-10px);
+}
+
+/* Fotoğrafı tam yuvarlak yapan stil */
 .profile-img {
     width: 140px;
     height: 140px;
     border-radius: 50%;
     border: 5px solid #fff;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    object-fit: cover;
+    object-fit: cover; /* Fotoğrafın yamulmasını önler */
 }
 
+/* Yazı renkleri ve boşlukları */
 h1 { color: #333; margin: 15px 0 5px; }
-p { color: #777; font-size: 14px; }
+p { color: #777; font-size: 14px; line-height: 1.5; }
 
+/* Buton tasarımı */
 .btn {
     display: inline-block;
     margin-top: 20px;
@@ -37,7 +48,10 @@ p { color: #777; font-size: 14px; }
     color: white;
     text-decoration: none;
     border-radius: 25px;
-    transition: 0.3s;
+    font-weight: bold;
+    transition: background 0.3s;
 }
 
-.btn:hover { background: #5146d9; }
+.btn:hover {
+    background: #5146d9;
+}

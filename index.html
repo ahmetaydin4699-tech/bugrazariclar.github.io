@@ -1,87 +1,81 @@
-<!DOCTYPE html>
-<html lang="tr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arkadaşımın Sayfası</title>
-    <style>
-        /* Arka plan ve genel düzen */
-        body {
-            background: linear-gradient(135deg, #74ebd5 0%, #9face6 100%);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            font-family: 'Segoe UI', sans-serif;
-        }
+/* Sayfanın genel arka planı */
+body {
+    background: linear-gradient(135deg, #74ebd5 0%, #9face6 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 
-        /* Beyaz Kart tasarımı */
-        .card {
-            background: white;
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-            text-align: center;
-            max-width: 400px;
-        }
+/* Kartın genişliğini biraz artırdık ki 3 foto sığsın */
+.card {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+    text-align: center;
+    width: 350px; 
+    transition: transform 0.3s;
+}
 
-        /* Üçlü fotoğraf dizilimi */
-        .photo-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
+.card:hover {
+    transform: translateY(-10px);
+}
 
-        .profile-img {
-            border-radius: 50%;
-            border: 3px solid #fff;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            object-fit: cover;
-            transition: 0.3s;
-        }
+/* Fotoğrafları yan yana dizen kapsayıcı */
+.photo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
 
-        /* Yanlardaki küçük fotolar */
-        .side { width: 70px; height: 70px; opacity: 0.8; }
-        /* Ortadaki ana foto */
-        .main { width: 110px; height: 110px; z-index: 2; }
+/* Genel fotoğraf ayarları (Tek bir yerde topladık) */
+.profile-img {
+    border-radius: 50%;
+    border: 3px solid #fff;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    object-fit: cover;
+    transition: 0.3s;
+}
 
-        .profile-img:hover { transform: scale(1.1); opacity: 1; }
+/* Ortadaki ana fotoğraf boyutu */
+.main {
+    width: 110px;
+    height: 110px;
+    z-index: 2;
+}
 
-        h1 { color: #333; margin: 10px 0; font-size: 24px; }
-        p { color: #666; font-size: 14px; margin-bottom: 20px; }
+/* Yanlardaki küçük fotoğraflar */
+.side {
+    width: 70px;
+    height: 70px;
+    opacity: 0.8;
+}
 
-        /* Instagram Butonu */
-        .btn {
-            display: inline-block;
-            padding: 12px 25px;
-            background: #6c63ff;
-            color: white;
-            text-decoration: none;
-            border-radius: 25px;
-            font-weight: bold;
-            transition: 0.3s;
-        }
+.profile-img:hover {
+    transform: scale(1.1);
+    opacity: 1;
+}
 
-        .btn:hover { background: #e1306c; transform: translateY(-3px); }
-    </style>
-</head>
-<body>
+h1 { color: #333; margin: 15px 0 5px; font-size: 22px; }
+p { color: #777; font-size: 14px; line-height: 1.5; }
 
-    <div class="card">
-        <div class="gallery">
-            <img src="arkadasimin-fotosu2.jpg" alt="Foto 1">
-            <img src="arkadasimin-fotosu.jpg" alt="Ana Foto" class="main-img">
-            <img src="arkadasimin-fotosu3.jpg" alt="Foto 3">
-        </div>
-        
-        <h1>Buğra Zarıçlar</h1>
-        <p>Senin için hazırladığım özel web sitesine hoş geldin! ✨</p>
-        
-        <a href="https://www.instagram.com/bugra_zariclar" target="_blank" class="btn">DM'den yürü</a>
-    </div>
+.btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 25px;
+    background: #6c63ff;
+    color: white;
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: bold;
+    transition: 0.3s;
+}
 
-</body>
-</html>
+.btn:hover {
+    background: #e1306c; /* Instagram rengine yakın bir renk */
+}

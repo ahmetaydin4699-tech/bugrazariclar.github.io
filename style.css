@@ -55,3 +55,40 @@ p { color: #777; font-size: 14px; line-height: 1.5; }
 .btn:hover {
     background: #5146d9;
 }
+/* Fotoğrafları yan yana dizen kapsayıcı */
+.photo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px; /* Fotoğraflar arası boşluk */
+    margin-bottom: 20px;
+}
+
+/* Genel fotoğraf stilleri */
+.profile-img {
+    border-radius: 50%;
+    border: 3px solid #fff;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    object-fit: cover;
+    transition: 0.3s;
+}
+
+/* Ortadaki ana fotoğraf biraz daha büyük olsun */
+.main {
+    width: 120px;
+    height: 120px;
+    z-index: 2; /* Önde durması için */
+}
+
+/* Yanlardaki fotoğraflar biraz daha küçük ve soluk olabilir */
+.side {
+    width: 80px;
+    height: 80px;
+    opacity: 0.8;
+}
+
+/* Üstüne gelince büyüme efekti */
+.profile-img:hover {
+    transform: scale(1.1);
+    opacity: 1;
+}

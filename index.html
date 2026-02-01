@@ -3,152 +3,177 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Doğum Günü Sürprizi ✨</title>
+    <title>Doğum Günü Sürprizleri ✨</title>
     <style>
         body {
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); /* Kar için daha koyu, kış tonu bir mavi */
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             margin: 0;
             font-family: 'Segoe UI', Tahoma, sans-serif;
-            gap: 20px;
-            flex-wrap: wrap;
-            padding: 20px;
+            gap: 40px;
+            flex-wrap: wrap; /* Kartların sığmadığında alt alta geçmesi için */
+            padding: 40px 20px;
             overflow-x: hidden;
             position: relative;
         }
 
-        /* Kar Taneleri Stili */
+        /* Arka Plan Kar Efekti */
         .snowflake {
             color: #fff;
             font-size: 1.2em;
-            font-family: Arial, sans-serif;
-            text-shadow: 0 0 5px rgba(0,0,0,0.1);
             position: fixed;
             top: -10%;
-            z-index: 9999;
+            z-index: 1;
             user-select: none;
             cursor: default;
-            animation-name: snowflakes-fall, snowflakes-shake;
-            animation-duration: 10s, 3s;
-            animation-timing-function: linear, ease-in-out;
-            animation-iteration-count: infinite, infinite;
-            animation-play-state: running, running;
+            animation: fall linear infinite, shake ease-in-out infinite;
         }
-        @keyframes snowflakes-fall {
-            0% { top: -10%; }
-            100% { top: 100%; }
-        }
-        @keyframes snowflakes-shake {
-            0%, 100% { transform: translateX(0); }
-            50% { transform: translateX(80px); }
-        }
+        @keyframes fall { 0% { top: -10%; } 100% { top: 100%; } }
+        @keyframes shake { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(50px); } }
 
-        /* Kart ve Padlet Alanı (Karın önünde olması için z-index ekledik) */
-        .card, .padlet-area {
+        /* Kart Tasarımı */
+        .card {
             position: relative;
             z-index: 10;
-            background: rgba(255, 255, 255, 0.9); /* Hafif şeffaf beyaz */
-            backdrop-filter: blur(5px);
-        }
-
-        .card {
+            background: rgba(255, 255, 255, 0.95);
             padding: 25px;
-            border-radius: 20px;
+            border-radius: 25px;
             box-shadow: 0 15px 35px rgba(0,0,0,0.3);
             text-align: center;
-            width: 320px;
-            flex-shrink: 0;
+            width: 340px;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s;
         }
+        .card:hover { transform: translateY(-10px); }
 
-        .photo-container { display: flex; justify-content: center; align-items: center; gap: 10px; margin-bottom: 15px; }
-        .img-side { width: 65px; height: 65px; border-radius: 50%; object-fit: cover; border: 3px solid #fff; }
-        .img-main { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 4px solid #fff; }
+        /* 3 Fotoğraflı Galeri */
+        .photo-gallery {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+        .photo-gallery img {
+            border-radius: 12px;
+            object-fit: cover;
+            border: 3px solid white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .side-img { width: 60px; height: 80px; }
+        .main-img { width: 100px; height: 130px; }
 
-        .countdown-container { display: flex; justify-content: center; gap: 8px; margin-top: 15px; }
-        .time-box { background: #3498db; color: white; padding: 10px; border-radius: 10px; min-width: 50px; }
+        /* Sayaç Kutuları */
+        .countdown-container {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 15px;
+        }
+        .time-box {
+            background: #6c63ff;
+            color: white;
+            padding: 8px;
+            border-radius: 10px;
+            min-width: 55px;
+        }
         .time-box span { display: block; font-size: 18px; font-weight: bold; }
-        .time-box label { font-size: 10px; }
+        .time-box label { font-size: 10px; opacity: 0.9; }
 
         .btn {
             display: inline-block;
-            margin-top: 15px;
+            margin-top: 20px;
             padding: 10px 20px;
             background: #e1306c;
             color: white;
             text-decoration: none;
             border-radius: 25px;
             font-weight: bold;
+            font-size: 14px;
         }
+        .btn:hover { background: #c13584; }
 
-        .padlet-area {
-            width: 450px;
-            height: 550px;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-            border: 5px solid white;
-        }
-
-        @media (max-width: 850px) {
-            body { flex-direction: column; }
-            .padlet-area { width: 100%; height: 450px; }
-        }
+        h2 { color: #333; margin: 10px 0; font-size: 20px; }
+        .date-label { color: #6c63ff; font-weight: bold; font-size: 14px; }
     </style>
 </head>
 <body>
 
-    <div id="snow-container"></div>
-
     <div class="card">
-        <div class="photo-container">
-            <img src="arkadasimin-fotosu2.jpg" class="img-side">
-            <img src="arkadasimin-fotosu.jpg" class="img-main">
-            <img src="arkadasimin-fotosu3.jpg" class="img-side">
+        <div class="photo-gallery">
+            <img src="kasim_foto1.jpg" class="side-img">
+            <img src="kasim_ana.jpg" class="main-img">
+            <img src="kasim_foto2.jpg" class="side-img">
         </div>
-        <h2 style="margin:0; color:#333;">Buğra Zarıçlar</h2>
-        <div class="countdown-container" id="countdown">
-            <div class="time-box"><span id="days">00</span><label>GÜN</label></div>
-            <div class="time-box"><span id="hours">00</span><label>SAAT</label></div>
-            <div class="time-box"><span id="minutes">00</span><label>DAK</label></div>
-            <div class="time-box"><span id="seconds">00</span><label>SN</label></div>
+        <div class="date-label">🗓 20 KASIM</div>
+        <h2>Buğra Zarıçlar</h2>
+        
+        <div class="countdown-container" id="timer1">
+            <div class="time-box"><span id="days1">00</span><label>GÜN</label></div>
+            <div class="time-box"><span id="hours1">00</span><label>SAAT</label></div>
+            <div class="time-box"><span id="minutes1">00</span><label>DAK</label></div>
+            <div class="time-box"><span id="seconds1">00</span><label>SN</label></div>
         </div>
-        <a href="https://www.instagram.com/bugra_zariclar" target="_blank" class="btn">Instagram</a>
+        <a href="https://instagram.com/bugra_zariclar" target="_blank" class="btn">Instagram</a>
     </div>
 
-    <div class="padlet-area">
-        <iframe src="https://padlet.com/embed/6l5hdjzd2eaq8q1l" frameborder="0" style="width:100%; height:100%;"></iframe>
+    <div class="card" style="border-top: 5px solid #ff6b6b;">
+        <div class="photo-gallery">
+            <img src="haziran_foto1.jpg" class="side-img">
+            <img src="haziran_ana.jpg" class="main-img">
+            <img src="haziran_foto2.jpg" class="side-img">
+        </div>
+        <div class="date-label" style="color: #ff6b6b;">🗓 28 HAZİRAN</div>
+        <h2>Efe Güler</h2>
+        
+        <div class="countdown-container" id="timer2">
+            <div class="time-box" style="background: #ff6b6b;"><span id="days2">00</span><label>GÜN</label></div>
+            <div class="time-box" style="background: #ff6b6b;"><span id="hours2">00</span><label>SAAT</label></div>
+            <div class="time-box" style="background: #ff6b6b;"><span id="minutes2">00</span><label>DAK</label></div>
+            <div class="time-box" style="background: #ff6b6b;"><span id="seconds2">00</span><label>SN</label></div>
+        </div>
+        <a href="https://instagram.com/efe_skywalker" target="_blank" class="btn">Instagram</a>
     </div>
 
     <script>
-        // Sayaç Kodu
-        const countdownDate = new Date("Nov 20, 2026 00:00:00").getTime();
-        setInterval(function() {
+        // Hedef Tarihler
+        const date1 = new Date("Nov 20, 2026 00:00:00").getTime();
+        const date2 = new Date("June 28, 2026 00:00:00").getTime();
+
+        function updateTimers() {
             const now = new Date().getTime();
-            const distance = countdownDate - now;
-            document.getElementById("days").innerHTML = Math.floor(distance / (1000 * 60 * 60 * 24));
-            document.getElementById("hours").innerHTML = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            document.getElementById("minutes").innerHTML = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            document.getElementById("seconds").innerHTML = Math.floor((distance % (1000 * 60)) / 1000);
-        }, 1000);
+
+            // 1. Sayaç İşlemi
+            const diff1 = date1 - now;
+            document.getElementById("days1").innerText = Math.floor(diff1 / (1000 * 60 * 60 * 24));
+            document.getElementById("hours1").innerText = Math.floor((diff1 % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            document.getElementById("minutes1").innerText = Math.floor((diff1 % (1000 * 60 * 60)) / (1000 * 60));
+            document.getElementById("seconds1").innerText = Math.floor((diff1 % (1000 * 60)) / 1000);
+
+            // 2. Sayaç İşlemi
+            const diff2 = date2 - now;
+            document.getElementById("days2").innerText = Math.floor(diff2 / (1000 * 60 * 60 * 24));
+            document.getElementById("hours2").innerText = Math.floor((diff2 % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            document.getElementById("minutes2").innerText = Math.floor((diff2 % (1000 * 60 * 60)) / (1000 * 60));
+            document.getElementById("seconds2").innerText = Math.floor((diff2 % (1000 * 60)) / 1000);
+        }
+        setInterval(updateTimers, 1000);
 
         // Kar Tanesi Oluşturucu
-        function createSnowflake() {
-            const snow = document.createElement('div');
-            snow.innerHTML = "❄";
-            snow.classList.add('snowflake');
-            snow.style.left = Math.random() * 100 + 'vw';
-            snow.style.animationDuration = Math.random() * 3 + 7 + 's';
-            snow.style.opacity = Math.random();
-            snow.style.fontSize = Math.random() * 10 + 10 + 'px';
-            
-            document.body.appendChild(snow);
-            
-            setTimeout(() => { snow.remove(); }, 10000);
+        function createSnow() {
+            const flake = document.createElement('div');
+            flake.innerHTML = "❄";
+            flake.classList.add('snowflake');
+            flake.style.left = Math.random() * 100 + 'vw';
+            flake.style.animationDuration = Math.random() * 3 + 7 + 's';
+            flake.style.opacity = Math.random();
+            document.body.appendChild(flake);
+            setTimeout(() => { flake.remove(); }, 10000);
         }
-        setInterval(createSnowflake, 200);
+        setInterval(createSnow, 250);
     </script>
 </body>
 </html>

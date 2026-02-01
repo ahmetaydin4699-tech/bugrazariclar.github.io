@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Doğum Günümü kaçırma!</title>
+    <title>Doğum Günümü unutma</title>
     <style>
         body {
             background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
@@ -159,17 +159,16 @@
         <div class="padlet-wrapper">
             <iframe src="https://padlet.com/embed/6l5hdjzd2eaq8q1l"></iframe>
         </div>
-
         <div class="quote-box">
             <h3>✨ Günün Sözü</h3>
-            <p id="daily-quote">"Bir kadına, kadınım diyebilmen için ilk önce kendine adamım diyebilmelisin"</p>
+            <p id="daily-quote">"Bir kadına, kadınım diyebilmen için ilk önce kendine adamım diyebilmelisin."</p>
             <button class="refresh-btn" onclick="newQuote()">Başka Bir Söz Gör</button>
         </div>
     </div>
 
     <script>
-        // Sayaçlar
-        const date1 = new Date("Nov 20, 2026 00:00:00").getTime();
+        // GÜNCELLENEN TARİH: 15 Kasım 2026
+        const date1 = new Date("Nov 15, 2026 00:00:00").getTime();
         const date2 = new Date("June 28, 2026 00:00:00").getTime();
 
         setInterval(function() {
@@ -187,7 +186,6 @@
             document.getElementById("seconds2").innerText = Math.floor((diff2 % (1000 * 60)) / 1000);
         }, 1000);
 
-        // Kar Efekti
         function createSnow() {
             const flake = document.createElement('div');
             flake.innerHTML = "❄";
@@ -200,7 +198,6 @@
         }
         setInterval(createSnow, 250);
 
-        // Günün Sözü Listesi (Buraları istediğin gibi değiştir)
         const quotes = [
             "Herkesi mutlu etmek o*ospu işidir. ",
             "Günde 20 paragraf ",
@@ -208,13 +205,13 @@
             "Beyler Roblox gelen var mı? ",
             "Kıvırmak, kalçada şık duran bir eylemdir, ruhunuzda taşımayın ",
             "Hayat ne garip, yaşarken elinden tutan yok ölünce omuzlarda taşıyorlar "
+
         ];
 
         function newQuote() {
             const randomNumber = Math.floor(Math.random() * quotes.length);
             document.getElementById('daily-quote').innerText = quotes[randomNumber];
         }
-        // Sayfa açıldığında rastgele bir söz gelsin
         window.onload = newQuote;
     </script>
 </body>

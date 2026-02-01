@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Doğum Günü Sürprizi</title>
+    <title>Doğum Günü Sürprizi ✨</title>
     <style>
         body {
-            background: linear-gradient(135deg, #74ebd5 0%, #9face6 100%);
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); /* Kar için daha koyu, kış tonu bir mavi */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -16,36 +16,61 @@
             gap: 20px;
             flex-wrap: wrap;
             padding: 20px;
+            overflow-x: hidden;
+            position: relative;
         }
 
-        /* Sol Kart */
+        /* Kar Taneleri Stili */
+        .snowflake {
+            color: #fff;
+            font-size: 1.2em;
+            font-family: Arial, sans-serif;
+            text-shadow: 0 0 5px rgba(0,0,0,0.1);
+            position: fixed;
+            top: -10%;
+            z-index: 9999;
+            user-select: none;
+            cursor: default;
+            animation-name: snowflakes-fall, snowflakes-shake;
+            animation-duration: 10s, 3s;
+            animation-timing-function: linear, ease-in-out;
+            animation-iteration-count: infinite, infinite;
+            animation-play-state: running, running;
+        }
+        @keyframes snowflakes-fall {
+            0% { top: -10%; }
+            100% { top: 100%; }
+        }
+        @keyframes snowflakes-shake {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(80px); }
+        }
+
+        /* Kart ve Padlet Alanı (Karın önünde olması için z-index ekledik) */
+        .card, .padlet-area {
+            position: relative;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.9); /* Hafif şeffaf beyaz */
+            backdrop-filter: blur(5px);
+        }
+
         .card {
-            background: white;
             padding: 25px;
             border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
             text-align: center;
             width: 320px;
             flex-shrink: 0;
         }
 
-        .photo-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 15px;
-        }
-
-        /* Fotoğrafların boyutlarını sabitledik */
+        .photo-container { display: flex; justify-content: center; align-items: center; gap: 10px; margin-bottom: 15px; }
         .img-side { width: 65px; height: 65px; border-radius: 50%; object-fit: cover; border: 3px solid #fff; }
-        .img-main { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 4px solid #fff; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .img-main { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 4px solid #fff; }
 
-        /* Geri Sayım */
         .countdown-container { display: flex; justify-content: center; gap: 8px; margin-top: 15px; }
-        .time-box { background: #6c63ff; color: white; padding: 10px; border-radius: 10px; min-width: 50px; }
+        .time-box { background: #3498db; color: white; padding: 10px; border-radius: 10px; min-width: 50px; }
         .time-box span { display: block; font-size: 18px; font-weight: bold; }
-        .time-box label { font-size: 10px; opacity: 0.9; }
+        .time-box label { font-size: 10px; }
 
         .btn {
             display: inline-block;
@@ -58,14 +83,12 @@
             font-weight: bold;
         }
 
-        /* Sağ Taraf - Padlet */
         .padlet-area {
             width: 450px;
             height: 550px;
-            background: white;
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
             border: 5px solid white;
         }
 
@@ -77,34 +100,30 @@
 </head>
 <body>
 
+    <div id="snow-container"></div>
+
     <div class="card">
         <div class="photo-container">
             <img src="arkadasimin-fotosu2.jpg" class="img-side">
             <img src="arkadasimin-fotosu.jpg" class="img-main">
             <img src="arkadasimin-fotosu3.jpg" class="img-side">
         </div>
-        
-        <h2 style="margin:0; color:#333;">Buğra Zarıçlar</h2>
-        <p style="font-size:14px; color:#666;">Doğum gününe kalan zaman ✨</p>
-        
+        <h2 style="margin:0; color:#333;">Arkadaşının İsmi</h2>
         <div class="countdown-container" id="countdown">
             <div class="time-box"><span id="days">00</span><label>GÜN</label></div>
             <div class="time-box"><span id="hours">00</span><label>SAAT</label></div>
             <div class="time-box"><span id="minutes">00</span><label>DAK</label></div>
             <div class="time-box"><span id="seconds">00</span><label>SN</label></div>
         </div>
-
         <a href="https://www.instagram.com/bugra_zariclar" target="_blank" class="btn">Instagram</a>
     </div>
 
     <div class="padlet-area">
-        <iframe src="https://padlet.com/embed/6l5hdjzd2eaq8q1l" 
-                frameborder="0" 
-                allow="camera;microphone;geolocation;display-capture;clipboard-write" 
-                style="width:100%; height:100%; display:block;"></iframe>
+        <iframe src="https://padlet.com/embed/6l5hdjzd2eaq8q1l" frameborder="0" style="width:100%; height:100%;"></iframe>
     </div>
 
     <script>
+        // Sayaç Kodu
         const countdownDate = new Date("Nov 20, 2026 00:00:00").getTime();
         setInterval(function() {
             const now = new Date().getTime();
@@ -114,7 +133,22 @@
             document.getElementById("minutes").innerHTML = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             document.getElementById("seconds").innerHTML = Math.floor((distance % (1000 * 60)) / 1000);
         }, 1000);
-    </script>
 
+        // Kar Tanesi Oluşturucu
+        function createSnowflake() {
+            const snow = document.createElement('div');
+            snow.innerHTML = "❄";
+            snow.classList.add('snowflake');
+            snow.style.left = Math.random() * 100 + 'vw';
+            snow.style.animationDuration = Math.random() * 3 + 7 + 's';
+            snow.style.opacity = Math.random();
+            snow.style.fontSize = Math.random() * 10 + 10 + 'px';
+            
+            document.body.appendChild(snow);
+            
+            setTimeout(() => { snow.remove(); }, 10000);
+        }
+        setInterval(createSnowflake, 200);
+    </script>
 </body>
 </html>

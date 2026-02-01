@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Doğum Günümü kaçırma!!!</title>
+    <title>Doğum Günümü kaçırma!</title>
     <style>
         body {
             background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
@@ -31,7 +31,7 @@
         @keyframes fall { 0% { top: -10%; } 100% { top: 100%; } }
         @keyframes shake { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(50px); } }
 
-        /* Kartların Yan Yana Durduğu Üst Alan */
+        /* Üst Kartlar */
         .cards-container {
             display: flex;
             justify-content: center;
@@ -53,7 +53,7 @@
 
         .photo-gallery { display: flex; justify-content: center; align-items: center; gap: 8px; margin-bottom: 12px; }
         .side-img { width: 60px; height: 80px; border-radius: 10px; object-fit: cover; border: 2px solid #eee; }
-        .main-img { width: 90px; height: 120px; border-radius: 12px; object-fit: cover; border: 3px solid #fff; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .main-img { width: 90px; height: 120px; border-radius: 12px; object-fit: cover; border: 3px solid #fff; }
 
         .countdown-container { display: flex; justify-content: center; gap: 6px; margin-top: 10px; }
         .time-box { background: #6c63ff; color: white; padding: 6px; border-radius: 8px; min-width: 50px; }
@@ -72,36 +72,63 @@
             font-size: 13px;
         }
 
-        /* Tek Büyük Padlet Alanı */
+        /* Alt Bölüm: Padlet ve Günün Sözü Yan Yana */
+        .bottom-section {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            width: 100%;
+            max-width: 1100px;
+            z-index: 10;
+            flex-wrap: wrap;
+        }
+
         .padlet-wrapper {
-            width: 700px;
-            max-width: 95vw;
+            flex: 2;
+            min-width: 350px;
             height: 550px;
             background: white;
             border-radius: 25px;
             overflow: hidden;
             box-shadow: 0 15px 35px rgba(0,0,0,0.4);
             border: 6px solid white;
-            z-index: 10;
         }
-        iframe { width: 100%; height: 100%; border: none; }
 
-        h2 { font-size: 18px; margin: 5px 0; color: #333; }
-        .date-tag { font-size: 12px; font-weight: bold; color: #6c63ff; margin-bottom: 5px; }
+        /* Günün Sözü Kutusu */
+        .quote-box {
+            flex: 1;
+            min-width: 300px;
+            background: #fff;
+            border-radius: 25px;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+            border-left: 8px solid #ff6b6b;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            height: auto;
+            max-height: 550px;
+        }
+
+        .quote-box h3 { color: #ff6b6b; margin-top: 0; }
+        #daily-quote { font-style: italic; font-size: 1.2em; color: #444; margin: 20px 0; }
+        .refresh-btn { cursor: pointer; background: #eee; border: none; padding: 5px 10px; border-radius: 10px; font-size: 12px; color: #888; }
+
+        iframe { width: 100%; height: 100%; border: none; }
     </style>
 </head>
 <body>
 
     <div class="cards-container">
-        
         <div class="card">
             <div class="photo-gallery">
                 <img src="kasim_foto1.jpg" class="side-img">
                 <img src="kasim_ana.jpg" class="main-img">
                 <img src="kasim_foto2.jpg" class="side-img">
             </div>
-            <div class="date-tag">🗓 20 KASIM</div>
-            <h2>Buğra Zariclar</h2>
+            <h2>20 Kasım 🎂</h2>
             <div class="countdown-container">
                 <div class="time-box"><span id="days1">00</span><label>GÜN</label></div>
                 <div class="time-box"><span id="hours1">00</span><label>SAAT</label></div>
@@ -117,8 +144,7 @@
                 <img src="haziran_ana.jpg" class="main-img">
                 <img src="haziran_foto2.jpg" class="side-img">
             </div>
-            <div class="date-tag" style="color:#ff6b6b;">🗓 28 HAZİRAN</div>
-            <h2>Efe Güler</h2>
+            <h2>28 Haziran 🎉</h2>
             <div class="countdown-container">
                 <div class="time-box" style="background:#ff6b6b;"><span id="days2">00</span><label>GÜN</label></div>
                 <div class="time-box" style="background:#ff6b6b;"><span id="hours2">00</span><label>SAAT</label></div>
@@ -127,20 +153,27 @@
             </div>
             <a href="https://instagram.com/efe_skywalker" target="_blank" class="btn" style="background:#ff6b6b;">Instagram</a>
         </div>
-
     </div>
 
-    <div class="padlet-wrapper">
-        <iframe src="https://padlet.com/embed/6l5hdjzd2eaq8q1l"></iframe>
+    <div class="bottom-section">
+        <div class="padlet-wrapper">
+            <iframe src="https://padlet.com/embed/6l5hdjzd2eaq8q1l"></iframe>
+        </div>
+
+        <div class="quote-box">
+            <h3>✨ Günün Sözü</h3>
+            <p id="daily-quote">"Bir kadına, kadınım diyebilmen için ilk önce kendine adamım diyebilmelisin"</p>
+            <button class="refresh-btn" onclick="newQuote()">Başka Bir Söz Gör</button>
+        </div>
     </div>
 
     <script>
+        // Sayaçlar
         const date1 = new Date("Nov 20, 2026 00:00:00").getTime();
         const date2 = new Date("June 28, 2026 00:00:00").getTime();
 
         setInterval(function() {
             const now = new Date().getTime();
-            
             const diff1 = date1 - now;
             document.getElementById("days1").innerText = Math.floor(diff1 / (1000 * 60 * 60 * 24));
             document.getElementById("hours1").innerText = Math.floor((diff1 % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -154,6 +187,7 @@
             document.getElementById("seconds2").innerText = Math.floor((diff2 % (1000 * 60)) / 1000);
         }, 1000);
 
+        // Kar Efekti
         function createSnow() {
             const flake = document.createElement('div');
             flake.innerHTML = "❄";
@@ -165,6 +199,23 @@
             setTimeout(() => { flake.remove(); }, 10000);
         }
         setInterval(createSnow, 250);
+
+        // Günün Sözü Listesi (Buraları istediğin gibi değiştir)
+        const quotes = [
+            "Herkesi mutlu etmek o*ospu işidir. ",
+            "Günde 20 paragraf ",
+            "Bana 'iyiler mutlaka kazanır' diyen yavşağı getirin. . ",
+            "Beyler Roblox gelen var mı? ",
+            "Kıvırmak, kalçada şık duran bir eylemdir, ruhunuzda taşımayın ",
+            "Hayat ne garip, yaşarken elinden tutan yok ölünce omuzlarda taşıyorlar "
+        ];
+
+        function newQuote() {
+            const randomNumber = Math.floor(Math.random() * quotes.length);
+            document.getElementById('daily-quote').innerText = quotes[randomNumber];
+        }
+        // Sayfa açıldığında rastgele bir söz gelsin
+        window.onload = newQuote;
     </script>
 </body>
 </html>
